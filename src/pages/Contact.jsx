@@ -597,12 +597,12 @@ function Contact() {
                                             </div>
 
                                             <div>
-                                                <label className="label">Expected Timeline *</label>
+                                                <label className="label text-sm sm:text-base">Expected Timeline *</label>
                                                 <select
                                                     name="timeline"
                                                     value={formData.timeline}
                                                     onChange={handleChange}
-                                                    className="select"
+                                                    className="select text-sm sm:text-base h-10 sm:h-12"
                                                     required
                                                 >
                                                     <option value="">Select timeline</option>
@@ -632,9 +632,9 @@ function Contact() {
 
                                     {/* Step 3: Additional Services */}
                                     {currentStep === 3 && (
-                                        <div className="space-y-6 animate-fade-in-up">
+                                        <div className="space-y-4 sm:space-y-6 animate-fade-in-up">
                                             <div>
-                                                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">Additional Services</h2>
+                                                <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold mb-2">Additional Services</h2>
                                                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Enhance your project with these optional services</p>
                                             </div>
 
@@ -679,18 +679,14 @@ function Contact() {
                                                 </div>
                                             )}
 
-                                            <div className="flex justify-between pt-4">
-                                                <button type="button" onClick={prevStep} className="btn btn-ghost btn-lg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                                                    </svg>
+                                            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 pt-4 sm:pt-6">
+                                                <button type="button" onClick={prevStep} className="btn btn-ghost w-full sm:w-auto sm:btn-lg group order-2 sm:order-1">
+                                                    <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-hover:-translate-x-1 transition-transform" />
                                                     Back
                                                 </button>
-                                                <button type="button" onClick={nextStep} className="btn btn-primary btn-lg">
+                                                <button type="button" onClick={nextStep} className="btn btn-primary w-full sm:w-auto sm:btn-lg group order-1 sm:order-2 min-h-12 sm:min-h-14">
                                                     Continue
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                                                    </svg>
+                                                    <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                                                 </button>
                                             </div>
                                         </div>
@@ -706,27 +702,27 @@ function Contact() {
 
                                             <div className="grid sm:grid-cols-2 gap-4">
                                                 <div>
-                                                    <label className="label">Full Name *</label>
+                                                    <label className="label text-sm sm:text-base">Full Name *</label>
                                                     <input
                                                         type="text"
                                                         name="name"
                                                         value={formData.name}
                                                         onChange={handleChange}
                                                         placeholder="John Doe"
-                                                        className="input"
+                                                        className="input text-sm sm:text-base h-10 sm:h-12"
                                                         required
                                                     />
                                                 </div>
 
                                                 <div>
-                                                    <label className="label">Email *</label>
+                                                    <label className="label text-sm sm:text-base">Email *</label>
                                                     <input
                                                         type="email"
                                                         name="email"
                                                         value={formData.email}
                                                         onChange={handleChange}
                                                         placeholder="john@example.com"
-                                                        className="input"
+                                                        className="input text-sm sm:text-base h-10 sm:h-12"
                                                         required
                                                     />
                                                 </div>
@@ -734,67 +730,61 @@ function Contact() {
 
                                             <div className="grid sm:grid-cols-2 gap-4">
                                                 <div>
-                                                    <label className="label">Phone Number</label>
+                                                    <label className="label text-sm sm:text-base">Phone Number</label>
                                                     <input
                                                         type="tel"
                                                         name="phone"
                                                         value={formData.phone}
                                                         onChange={handleChange}
                                                         placeholder="+1 (555) 123-4567"
-                                                        className="input"
+                                                        className="input text-sm sm:text-base h-10 sm:h-12"
                                                     />
                                                 </div>
 
                                                 <div>
-                                                    <label className="label">Company</label>
+                                                    <label className="label text-sm sm:text-base">Company</label>
                                                     <input
                                                         type="text"
                                                         name="company"
                                                         value={formData.company}
                                                         onChange={handleChange}
                                                         placeholder="Your Company"
-                                                        className="input"
+                                                        className="input text-sm sm:text-base h-10 sm:h-12"
                                                     />
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <label className="label">Additional Details</label>
+                                                <label className="label text-sm sm:text-base">Additional Details</label>
                                                 <textarea
                                                     name="message"
                                                     value={formData.message}
                                                     onChange={handleChange}
                                                     placeholder="Any specific requirements or questions..."
-                                                    className="textarea min-h-[100px]"
+                                                    className="textarea min-h-[80px] sm:min-h-[100px] text-sm sm:text-base"
                                                 ></textarea>
-                                            </div>
-
-                                            <div className="flex justify-between pt-4">
-                                                <button type="button" onClick={prevStep} className="btn btn-ghost btn-lg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                                                    </svg>
+                                            </div>                                            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 pt-4 sm:pt-6">
+                                                <button type="button" onClick={prevStep} className="btn btn-ghost w-full sm:w-auto sm:btn-lg group order-2 sm:order-1">
+                                                    <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-hover:-translate-x-1 transition-transform" />
                                                     Back
                                                 </button>
                                                 <button
                                                     type="submit"
                                                     disabled={!canSubmit || isSubmitting}
-                                                    className="btn btn-primary btn-lg"
+                                                    className="btn btn-primary w-full sm:w-auto sm:btn-lg group order-1 sm:order-2 min-h-12 sm:min-h-14"
                                                 >
                                                     {isSubmitting ? (
                                                         <>
-                                                            <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                                                            <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5 mr-3" viewBox="0 0 24 24">
                                                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
                                                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                             </svg>
-                                                            Submitting...
+                                                            <span className="text-sm sm:text-base">Submitting...</span>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            Submit Request
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                                                            </svg>
+                                                            <span className="text-sm sm:text-base">Submit Request</span>
+                                                            <Send className="h-4 w-4 sm:h-5 sm:w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                                                         </>
                                                     )}
                                                 </button>
@@ -807,9 +797,9 @@ function Contact() {
 
                         {/* Price Summary Sidebar */}
                         <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
-                            <div className="card card-body p-6 sticky top-24 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border border-primary-200 dark:border-primary-800">
-                                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                                    <DollarSign className="w-6 h-6 text-primary" /> Project Estimate
+                            <div className="card card-body p-4 sm:p-6 sticky top-20 sm:top-24 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border border-primary-200 dark:border-primary-800">
+                                <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+                                    <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-primary" /> Project Estimate
                                 </h3>
 
                                 {formData.estimatedCost > 0 ? (
