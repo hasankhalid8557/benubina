@@ -364,8 +364,8 @@ function Contact() {
             <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
-                        <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Get In Touch</h2>
+                        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                             Multiple ways to reach us. Choose what works best for you.
                         </p>
                     </div>
@@ -392,7 +392,7 @@ function Contact() {
             </section>
 
             {/* Multi-Step Form Section */}
-            <section id="contact-form" className="py-12 sm:py-16 lg:py-24 px-3 sm:px-4 lg:px-8 bg-gray-50 dark:bg-gray-800">
+            <section id="contact-form" className="py-12 sm:py-16 lg:py-24 px-3 sm:px-4 lg:px-8 bg-gray-50 dark:bg-gray-900">
                 <div className="max-w-7xl mx-auto">
                     {/* Progress Indicator */}
                     <div className="mb-8 sm:mb-12">
@@ -401,8 +401,8 @@ function Contact() {
                                 <div key={step} className="flex items-center flex-1">
                                     <div className="flex flex-col items-center flex-1">
                                         <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold transition-all ${currentStep >= step
-                                            ? 'bg-primary-600 text-white'
-                                            : 'bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400'
+                                            ? 'bg-primary-600 text-white shadow-lg'
+                                            : 'bg-gray-300 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                                             }`}>
                                             {currentStep > step ? '✓' : step}
                                         </div>
@@ -415,7 +415,7 @@ function Contact() {
                                         </span>
                                     </div>
                                     {step < 4 && (
-                                        <div className={`h-1 flex-1 mx-2 transition-all ${currentStep > step ? 'bg-primary-600' : 'bg-gray-300 dark:bg-gray-600'
+                                        <div className={`h-1 flex-1 mx-2 transition-all ${currentStep > step ? 'bg-primary-600' : 'bg-gray-300 dark:bg-gray-700'
                                             }`} />
                                     )}
                                 </div>
@@ -425,14 +425,29 @@ function Contact() {
 
                     <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                         {/* Main Form */}
-                        <div className="lg:col-span-2 order-2 lg:order-1">
-                            <div className="bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700">
+                        <div className="lg:col-span-2 order-1 lg:order-1">
+                            <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-600">
                                 {status.message && (
                                     <div className={`alert ${status.type === 'success' ? 'alert-success' : 'alert-error'} mb-6`}>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                         <span>{status.message}</span>
+                                    </div>
+                                )}
+
+                                {/* Mobile Price Summary - Shows when there's an estimate */}
+                                {formData.estimatedCost > 0 && (
+                                    <div className="lg:hidden mb-6 p-4 bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-lg border border-primary-200 dark:border-primary-700">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <DollarSign className="w-5 h-5 text-primary" />
+                                                <span className="font-semibold text-gray-900 dark:text-white">Estimate:</span>
+                                            </div>
+                                            <div className="text-xl font-bold text-primary-600 dark:text-primary-400">
+                                                ${formData.estimatedCost.toLocaleString()}
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
 
@@ -550,7 +565,7 @@ function Contact() {
                                                     {serviceConfigs[formData.serviceType].features.map((feature) => (
                                                         <label
                                                             key={feature.value}
-                                                            className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                                            className="flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                                                         >
                                                             <input
                                                                 type="checkbox"
@@ -642,7 +657,7 @@ function Contact() {
                                                 {Object.entries(additionalServices).map(([key, service]) => (
                                                     <label
                                                         key={key}
-                                                        className="flex items-start p-4 border-2 rounded-lg cursor-pointer hover:border-primary-400 transition-all"
+                                                        className="flex items-start p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-400 dark:hover:border-primary-500 transition-all"
                                                     >
                                                         <input
                                                             type="checkbox"
@@ -796,8 +811,8 @@ function Contact() {
                         </div>
 
                         {/* Price Summary Sidebar */}
-                        <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
-                            <div className="card card-body p-4 sm:p-6 sticky top-20 sm:top-24 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border border-primary-200 dark:border-primary-800">
+                        <div className="space-y-4 sm:space-y-6 order-2 lg:order-2">
+                            <div className="card card-body p-4 sm:p-6 sticky top-20 sm:top-24 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border border-primary-200 dark:border-primary-700 shadow-lg">
                                 <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                                     <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-primary" /> Project Estimate
                                 </h3>
@@ -972,75 +987,6 @@ function Contact() {
                                     <div className="flex items-center justify-center gap-2 text-sm">
                                         <span className="text-green-600 text-xl">✓</span>
                                         <span>100% Satisfaction</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Additional Info */}
-                        <div className="space-y-6 sm:space-y-8">
-                            <div className="card card-body p-6 sm:p-8">
-                                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Why Contact Us?</h3>
-                                <div className="space-y-4 sm:space-y-6">
-                                    <div className="flex gap-4 items-start">
-                                        <div className="text-3xl flex-shrink-0">✨</div>
-                                        <div>
-                                            <h4 className="font-bold mb-1">Free Consultation</h4>
-                                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                                Get expert advice and project estimates at no cost.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4 items-start">
-                                        <div className="text-3xl flex-shrink-0">⚡</div>
-                                        <div>
-                                            <h4 className="font-bold mb-1">Quick Response</h4>
-                                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                                We respond to all inquiries within 24 hours.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4 items-start">
-                                        <div className="text-3xl flex-shrink-0">🤝</div>
-                                        <div>
-                                            <h4 className="font-bold mb-1">No Obligation</h4>
-                                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                                Discuss your project with no commitment required.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4 items-start">
-                                        <div className="text-3xl flex-shrink-0">🎯</div>
-                                        <div>
-                                            <h4 className="font-bold mb-1">Tailored Solutions</h4>
-                                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                                Custom strategies designed for your specific needs.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="card card-body p-6 sm:p-8 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/40 dark:to-secondary-900/40">
-                                <h3 className="text-xl sm:text-2xl font-bold mb-4 flex items-center gap-2">
-                                    <Building className="w-6 h-6 text-primary" />
-                                    Office Location
-                                </h3>
-                                <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg flex items-center justify-center mb-4 border-2 border-dashed border-gray-300 dark:border-gray-600">
-                                    <div className="text-center">
-                                        <MapIcon className="w-16 h-16 mx-auto mb-3 text-gray-500" />
-                                        <p className="text-gray-600 dark:text-gray-400 text-sm">Interactive Map Coming Soon</p>
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-start gap-3">
-                                        <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                                        <div className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                                            <strong>Benubina Headquarters</strong><br />
-                                            123 Tech Street<br />
-                                            Silicon Valley, CA 94025<br />
-                                            United States
-                                        </div>
                                     </div>
                                 </div>
                             </div>
