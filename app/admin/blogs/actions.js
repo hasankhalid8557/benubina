@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { auth } from '../../../../auth'
+import { auth } from '../../../auth'
 
 // Create a new blog post
 export async function createBlog(formData) {
@@ -13,7 +13,7 @@ export async function createBlog(formData) {
         }
 
         // Get user ID from email
-        const user = await prisma.user.findUnique({
+        const user = await prisma.users.findUnique({
             where: { email: session.user.email }
         })
 
@@ -35,7 +35,7 @@ export async function createBlog(formData) {
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)/g, '')
 
-        const blog = await prisma.blog.create({
+        const blog = await prisma.blogs.create({
             data: {
                 title,
                 slug,
@@ -81,7 +81,7 @@ export async function updateBlog(id, formData) {
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)/g, '')
 
-        const blog = await prisma.blog.update({
+        const blog = await prisma.blogs.update({
             where: { id: parseInt(id) },
             data: {
                 title,
@@ -114,7 +114,7 @@ export async function deleteBlog(id) {
             return { error: 'Unauthorized' }
         }
 
-        await prisma.blog.delete({
+        await prisma.blogs.delete({
             where: { id: parseInt(id) },
         })
 
@@ -131,7 +131,7 @@ export async function deleteBlog(id) {
 // Get all blogs (admin)
 export async function getAllBlogs() {
     try {
-        const blogs = await prisma.blog.findMany({
+        const blogs = await prisma.blogs.findMany({
             orderBy: { createdAt: 'desc' },
             include: {
                 author: {
@@ -165,7 +165,7 @@ export async function getPublishedBlogs({ page = 1, limit = 6, search = '', cate
         }
 
         const [blogs, total] = await Promise.all([
-            prisma.blog.findMany({
+            prisma.blogs.findMany({
                 where,
                 skip,
                 take: limit,
@@ -176,7 +176,7 @@ export async function getPublishedBlogs({ page = 1, limit = 6, search = '', cate
                     }
                 }
             }),
-            prisma.blog.count({ where })
+            prisma.blogs.count({ where })
         ])
 
         return {
@@ -197,7 +197,7 @@ export async function getPublishedBlogs({ page = 1, limit = 6, search = '', cate
 // Get all categories
 export async function getAllCategories() {
     try {
-        const blogs = await prisma.blog.findMany({
+        const blogs = await prisma.blogs.findMany({
             where: { published: true },
             select: { category: true },
             distinct: ['category']
@@ -212,7 +212,7 @@ export async function getAllCategories() {
 // Get all keywords
 export async function getAllKeywords() {
     try {
-        const blogs = await prisma.blog.findMany({
+        const blogs = await prisma.blogs.findMany({
             where: { published: true },
             select: { keywords: true }
         })
@@ -230,7 +230,7 @@ export async function getAllKeywords() {
 // Get single blog by slug
 export async function getBlogBySlug(slug) {
     try {
-        const blog = await prisma.blog.findUnique({
+        const blog = await prisma.blogs.findUnique({
             where: { slug },
             include: {
                 author: {

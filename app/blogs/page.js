@@ -2,7 +2,8 @@ import { getPublishedBlogs, getAllCategories, getAllKeywords } from '../admin/bl
 import BlogGrid from './BlogGrid'
 import BlogFilters from './BlogFilters'
 
-export default async function BlogsPage({ searchParams }) {
+export default async function BlogsPage(props) {
+    const searchParams = await props.searchParams
     const page = parseInt(searchParams.page) || 1
     const search = searchParams.search || ''
     const category = searchParams.category || ''

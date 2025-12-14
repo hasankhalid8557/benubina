@@ -50,3 +50,5 @@ next-env.d.ts
 # old Vite files
 index.html
 vite.config.js
+
+/lib/generated/prisma

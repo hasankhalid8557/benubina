@@ -1,6 +1,6 @@
 // app/lib/actions.js
 'use server'
-import { signIn } from './../../../auth' // Ensure this path is correct relative to this file
+import { signIn } from '../../auth'
 
 export async function authenticate(prevState, formData) {
     try {

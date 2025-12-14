@@ -1,4 +1,4 @@
-import { auth } from '../../../../../../auth'
+import { auth } from '../../../../../auth'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import BlogForm from '../../BlogForm'
@@ -10,7 +10,7 @@ export default async function EditBlogPage({ params }) {
         redirect('/login')
     }
 
-    const blog = await prisma.blog.findUnique({
+    const blog = await prisma.blogs.findUnique({
         where: { id: parseInt(params.id) }
     })
 

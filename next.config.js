@@ -4,6 +4,11 @@ const nextConfig = {
     images: {
         domains: ['images.unsplash.com'],
     },
+    experimental: {
+        serverActions: {
+            allowedOrigins: ['breezy-pots-see.loca.lt', 'localhost:3000'],
+        },
+    },
 }
 
-module.exports = nextConfig
+export default nextConfig
